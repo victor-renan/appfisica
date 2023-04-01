@@ -3,7 +3,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Video } from '../../components/Video';
 
 import {
-  View,
   Text,
   Box,
   Heading,
@@ -12,119 +11,75 @@ import {
   theme
 } from 'native-base';
 
+import { styles } from './styles';
+
 
 export const InicioRoute = 'Início';
 
 export function InicioScreen() {
   return (
-    <ScrollView>
+    <ScrollView paddingX={3.5} paddingY={1}>
 
-      <Box
-        safeAreaTop={true}
-        flex={1}
-        padding={3.5}
-      >
-
-        <Box>
-          <Video height={200} videoId={"bHQqvYy5KYo"} />
+      <Box id='destaques' {...styles.sectionStyle}>
+        <Box {...styles.titleStyle}>
+          <Icon name='analytics-outline' size={24} />
+          <Heading {...styles.headingStyle}>
+            Destaques
+          </Heading>
         </Box>
 
-        <Heading marginBottom={2} marginTop={5}>Partes da Física</Heading>
-        <Text fontSize={18} marginBottom={4}>Veja abaixo alguns dos temas de física mais abrangentes da atualidade.</Text>
+        <Box flex={1} bg="primary.600" {...styles.cardStyle}>
+          <Box padding={4}>
+            <Heading color="white">Eletrostática</Heading>
+            <Text color="white">Lorem ipsum dolor sit amet consectetur.</Text>
+          </Box>
+        </Box>
 
-        <Box
-          bg="primary.600"
-          borderRadius={12}
-          height={95}
-          marginBottom={1}
-          flexDirection="row"
-          alignItems="center"
-          padding={2}
-        >
-          <Box
-            width={65}
-            height={65}
-            borderRadius={8}
-            backgroundColor="primary.500"
-            justifyContent="center"
-            alignItems="center"
-          >
+      </Box>
+
+      <Box id='material' {...styles.sectionStyle}>
+        <Box {...styles.titleStyle}>
+          <Icon name='book-outline' size={24} />
+          <Heading {...styles.headingStyle}>
+            Material de apoio
+          </Heading>
+        </Box>
+
+        <Text fontSize={17} marginBottom={4}>Veja abaixo alguns dos conteúdos de Física mais importantes.</Text>
+
+        <Box bg="primary.600" {...styles.topicStyle}>
+          <Box backgroundColor="primary.500" {...styles.iconBgStyle}>
             <Icon name='thermometer-outline' color={theme.colors.primary[100]} size={36} />
           </Box>
-
-          <Box
-            flex={1}
-            paddingLeft={3}
-          >
+          <Box flex={1} paddingLeft={3}>
             <Heading color="white">Dilatação volumétrica</Heading>
             <Text color="white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus</Text>
           </Box>
         </Box>
-        <Box
-          bg="amber.600"
-          borderRadius={12}
-          height={95}
-          marginBottom={1}
-          flexDirection="row"
-          alignItems="center"
-          padding={2}
-        >
-          <Box
-            width={65}
-            height={65}
-            borderRadius={8}
-            backgroundColor="amber.500"
-            justifyContent="center"
-            alignItems="center"
-          >
+
+        <Box bg="amber.600" {...styles.topicStyle}>
+          <Box backgroundColor="amber.500" {...styles.iconBgStyle}>
             <Icon name='flash-outline' color={theme.colors.amber[100]} size={36} />
           </Box>
-
-          <Box
-            flex={1}
-            paddingLeft={3}
-          >
+          <Box flex={1} paddingLeft={3}>
             <Heading color="white">Força eletrica</Heading>
             <Text color="white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus</Text>
           </Box>
         </Box>
-        <Box
-          bg="tertiary.600"
-          borderRadius={12}
-          height={95}
-          marginBottom={1}
-          flexDirection="row"
-          alignItems="center"
-          padding={2}
-        >
-          <Box
-            width={65}
-            height={65}
-            borderRadius={8}
-            backgroundColor="tertiary.500"
-            justifyContent="center"
-            alignItems="center"
-          >
+
+        <Box bg="tertiary.600" {...styles.topicStyle}>
+          <Box backgroundColor="tertiary.500" {...styles.iconBgStyle}>
             <Icon name='pulse-outline' color={theme.colors.tertiary[100]} size={36} />
           </Box>
-
-          <Box
-            flex={1}
-            paddingLeft={3}
-          >
+          <Box flex={1} paddingLeft={3}>
             <Heading color="white">Ondulatória</Heading>
             <Text color="white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus</Text>
           </Box>
         </Box>
 
-        <Button
-          marginTop={2}
-          size="lg"
-          borderRadius={8}
-        >
-          Veja todos
-        </Button>
+        <Button marginTop={2} size="lg" borderRadius={8}>Veja todos</Button>
       </Box>
+
     </ScrollView>
   );
 };

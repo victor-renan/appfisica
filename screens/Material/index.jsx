@@ -1,8 +1,8 @@
 import { View, Text } from "react-native";
 
-export const ConteudoRoute = 'Conteúdo';
+export const MaterialRoute = 'Material';
 
-export function ConteudoScreen() {
+export function MaterialScreen() {
   return (
     <View>
       <Text>Tela de Conteudo</Text>

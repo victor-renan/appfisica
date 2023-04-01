@@ -24,7 +24,10 @@ export function Video(props) {
     <YoutubeIframe
       onChangeState={onStateChange}
       onFullScreenChange={onFullScreenChange}
-      contentScale={0.8}
+      contentScale={0.82}
+      webViewStyle={{
+        opacity: 0.99
+      }}
       webViewProps={{
         javaScriptEnabled: true
       }}

@@ -6,7 +6,7 @@ import { InicioScreen, InicioRoute } from './screens/Inicio';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { ConteudoRoute, ConteudoScreen } from './screens/Conteudo';
+import { MaterialRoute, MaterialScreen } from './screens/Material';
 import { AtividadesRoute, AtividadesScreen } from './screens/Atividades';
 import { VideosRoute, VideosScreen } from './screens/Videos';
 
@@ -49,8 +49,8 @@ const NavigationTabs = () => {
         />
         <Tab.Screen
           
-          name={ConteudoRoute}
-          component={ConteudoScreen}
+          name={MaterialRoute}
+          component={MaterialScreen}
           options={{
             tabBarIcon: ({ color }) => { return <Icon name='book-outline' size={26} color={color} /> },
             animationEnabled: false,
