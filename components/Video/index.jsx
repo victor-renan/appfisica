@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import YoutubeIframe, { PLAYER_STATES } from 'react-native-youtube-iframe';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { Box } from 'native-base';
+
 
 export function Video(props) {
   const [playing, setPlaying] = useState(false);
