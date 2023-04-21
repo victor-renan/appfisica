@@ -7,7 +7,7 @@ import { AtividadesRoute, AtividadesScreen } from '../../screens/Atividades';
 import { VideosRoute, VideosScreen } from '../../screens/Videos';
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from './styles';
-import { CategoriaScreen } from "../../screens/Categoria";
+
 
 // Cria um navegador em baixo
 const Tab = createBottomTabNavigator();
@@ -41,13 +41,6 @@ export const NavigationTabs = () => {
         <Tab.Screen
           name={VideosRoute}
           component={VideosScreen}
-          options={{
-            tabBarIcon: ({ color }) => { return <Icon name='film-outline' size={26} color={color} /> },
-          }}
-        />
-        <Tab.Screen
-          name="Categoria"
-          component={CategoriaScreen}
           options={{
             tabBarIcon: ({ color }) => { return <Icon name='film-outline' size={26} color={color} /> },
           }}

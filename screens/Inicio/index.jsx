@@ -7,6 +7,7 @@ import { Text, Box, ScrollView } from 'native-base';
 import { MaterialRoute } from '../Material';
 import { Category } from '../../components/Category';
 import { sharedStyles } from '../../shared/styles'
+import { Document } from '../../components/Document';
 
 // Route
 export const InicioRoute = 'Início';
@@ -31,16 +32,19 @@ export function InicioScreen({ navigation }) {
         <Text color='gray.400' fontSize={17} marginBottom={4}>Veja abaixo alguns dos conteúdos de Física mais importantes.</Text>
         <Box>
           <Category
+            showMateriais
             icon="thermometer-outline"
             title="Termometria"
             text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus"
           />
           <Category
+            showMateriais
             icon="thermometer-outline"
             title="Termometria"
             text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus"
           />
           <Category
+            showAtividades
             icon="thermometer-outline"
             title="Termometria"
             text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus"

@@ -9,6 +9,8 @@ export const styles = {
     alignItems: "center",
     padding: 2,
     bg: "gray.800",
+    borderWidth: 1,
+    borderColor: "gray.700"
   },
   categoryText: {
     flex: 1,
