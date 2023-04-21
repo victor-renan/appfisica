@@ -8,9 +8,7 @@ export const VideosRoute = 'Videos';
 export function VideosScreen() {
   return (
     <ScrollView {...sharedStyles.container}>
-      <Box {...styles.videoSection}>
         <Video height={270} videoId={"TOEvU_SRfak"} />
-      </Box>
     </ScrollView>
   );
 };
