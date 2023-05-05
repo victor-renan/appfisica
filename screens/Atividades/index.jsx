@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, ScrollView } from "native-base";
-import { Category } from "../../components/Category";
+import { Materia } from "../../components/Materia";
 import { sharedStyles } from "../../shared/styles";
+
 
 export const AtividadesRoute = 'Atividades';
 
@@ -19,8 +20,7 @@ export function AtividadesScreen() {
       <Box marginBottom={5}>
         {items().map(item => {
           return (
-            <Category
-              showAtividades
+            <Materia
               id={item.id}
               icon="logo-steam"
               title="Matéria"

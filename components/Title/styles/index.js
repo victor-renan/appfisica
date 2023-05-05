@@ -12,6 +12,6 @@ export const styles = {
   },
   titleIcon: {
     size: 32,
-    color: theme.colors.darkBlue[400],
+    color: theme.colors.amber[400],
   },
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, ScrollView } from "native-base";
-import { Category } from "../../components/Category";
+import { Materia } from "../../components/Materia";
 import { sharedStyles } from "../../shared/styles";
 
 
@@ -12,7 +12,7 @@ export function MaterialScreen({ navigation }) {
   const [opened, setOpened] = React.useState(false);
   const items = () => {
     const arr = [];
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i < 6; i++) {
       arr.push(i)
     }
     return arr;
@@ -22,9 +22,7 @@ export function MaterialScreen({ navigation }) {
       <Box marginBottom={5}>
         {items().map(item => {
           return (
-            <Category
-              showMateriais
-              id={item.id}
+            <Materia
               icon="logo-steam"
               title="Matéria"
               text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."

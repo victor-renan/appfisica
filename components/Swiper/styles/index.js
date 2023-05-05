@@ -12,5 +12,5 @@ export const styles = {
     marginHorizontal: 6
   },
   paginationDefaultColor: theme.colors.gray[300],
-  paginationActiveColor: theme.colors.darkBlue[400],
+  paginationActiveColor: theme.colors.amber[500],
 }

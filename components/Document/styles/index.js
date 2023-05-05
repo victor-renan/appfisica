@@ -1,3 +1,5 @@
+import { theme } from "native-base";
+
 export const styles = {
   document: {
     flexDirection: "row",
@@ -26,7 +28,7 @@ export const styles = {
   },
   documentButton: {
     size: 8,
-    bg: "darkBlue.500",
-    _pressed: { bg: "darkBlue.700" },
-  }
+    bg: "amber.500",
+    _pressed: { bg: "amber.700" },
+  },
 }

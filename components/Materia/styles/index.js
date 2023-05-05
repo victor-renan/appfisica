@@ -3,7 +3,7 @@ import { theme } from "native-base";
 export const styles = {
   category: {
     borderRadius: 12,
-    height: 95,
+    height: 98,
     marginBottom: 2,
     flexDirection: "row",
     alignItems: "center",
@@ -22,17 +22,22 @@ export const styles = {
   },
   categorySub: {
     color: "gray.400",
+    fontSize: 13
   },
   categoryIcon: {
-    color: theme.colors.gray[300],
+    color: theme.colors.gray[400],
     size: 36,
   },
   categoryIconBg: {
-    width: 65,
-    height: 65,
-    borderRadius: 8,
+    width: "64px",
+    height: "64px",
+    borderRadius: "8px",
     justifyContent: "center",
     alignItems: "center",
     bg: "gray.600",
   },
+  arrow: {
+    size: 26,
+    color: theme.colors.amber[400],
+  }
 }

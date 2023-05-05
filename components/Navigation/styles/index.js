@@ -17,7 +17,7 @@ export const styles = {
     headerTitleStyle: {
       fontSize: 18
     },
-    tabBarActiveTintColor: theme.colors.darkBlue[400],
+    tabBarActiveTintColor: theme.colors.amber[400],
     tabBarItemStyle: {
       margin: 6,
     },
