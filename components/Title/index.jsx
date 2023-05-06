@@ -3,12 +3,12 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./styles";
 
 
-export function Title(props) {
+export function Title({ icon, text}) {
   return (
     <Box {...styles.title}>
-      <Icon name={props.icon} {...styles.titleIcon} />
+      <Icon name={icon} {...styles.titleIcon} />
       <Heading color='white' {...styles.titleHeading}>
-        {props.text}
+        {text}
       </Heading>
     </Box>
   );

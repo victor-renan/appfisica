@@ -1,11 +1,47 @@
+import { theme } from "native-base";
+
+
 export const sharedStyles = {
   container: {
-    paddingX: 3.5,
-    paddingY: 3.5,
+    flex: 1,
+    padding: "16px",
     backgroundColor: 'gray.900',
   },
   section: {
     paddingY: 1,
     marginBottom: 3
+  },
+  formIcon: {
+    color: theme.colors.amber[300],
+    size: 40,
+    marginBottom: 12,
+  },
+  formHeading: {
+    fontSize: 24,
+    fontWeight: 900,
+    color: "white",
+    marginBottom: "16px"
+  },
+  form: {
+    width: "100%",
+  },
+  formControl: {
+    marginBottom: "8px",
+  },
+  formLabel: {
+    fontSize: 15,
+    color: "gray.100"
+  },
+  formInput: {
+    fontSize: 15,
+    color: "white",
+  },
+  formButton: {
+    bg: "amber.500",
+    _pressed: { bg: "amber.700" },
+    marginTop: "17px",
+    marginBottom: 3,
+    size: "lg",
+    borderRadius: 8,
   },
 }

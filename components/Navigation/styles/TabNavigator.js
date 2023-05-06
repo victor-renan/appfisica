@@ -2,6 +2,7 @@ import { theme } from "native-base";
 
 export const styles = {
   tabBar: {
+    headerShown: false,
     tabBarStyle: {
       height: 72,
       borderTopColor: theme.colors.gray[600],
@@ -14,18 +15,16 @@ export const styles = {
       height: 64,
       borderBottomWidth: 0.5,
     },
-    headerRightContainerStyle: {
-      paddingRight: 8,
-    },
-    headerTitle: "App de Física",
     headerTintColor: theme.colors.gray[100],
     headerTitleStyle: {
       fontSize: 18
     },
-    drawerStyle: {
-      backgroundColor: theme.colors.gray[900]
+    tabBarActiveTintColor: theme.colors.amber[400],
+    tabBarItemStyle: {
+      margin: 6,
     },
-    drawerActiveTintColor: theme.colors.amber[400],
-    drawerInactiveTintColor: theme.colors.gray[400],
+    tabBarLabelStyle: {
+      fontSize: 15,
+    },
   }
 }
