@@ -3,7 +3,7 @@ import YoutubeIframe, { PLAYER_STATES } from 'react-native-youtube-iframe';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 
-export function Video(props) {
+export function Video({height, videoId}) {
   const [playing, setPlaying] = useState(false);
 
   const onFullScreenChange = useCallback((isFullScreen) => {
@@ -26,13 +26,15 @@ export function Video(props) {
       onFullScreenChange={onFullScreenChange}
       contentScale={0.82}
       webViewStyle={{
-        opacity: 0.99
+        opacity: 0.99,
+        height: 270
       }}
       webViewProps={{
         javaScriptEnabled: true
       }}
       play={playing}
-      {...props}
+      height={height}
+      videoId={videoId}
     />
   );
 }

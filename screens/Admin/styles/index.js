@@ -35,5 +35,9 @@ export const styles = {
     _pressed: {
       bg:"gray.700"
     }
+  },
+  form: {
+    marginTop: "12px",
+    bg: "gray.800",
   }
 }

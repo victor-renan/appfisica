@@ -27,6 +27,7 @@ export const sharedStyles = {
   },
   formControl: {
     marginBottom: "8px",
+    
   },
   formLabel: {
     fontSize: 15,
@@ -35,12 +36,13 @@ export const sharedStyles = {
   formInput: {
     fontSize: 15,
     color: "white",
+    borderColor: "gray.500",
   },
   formButton: {
     bg: "amber.500",
     _pressed: { bg: "amber.700" },
-    marginTop: "17px",
-    marginBottom: 3,
+    marginTop: "16px",
+    marginBottom: "16px",
     size: "lg",
     borderRadius: 8,
   },

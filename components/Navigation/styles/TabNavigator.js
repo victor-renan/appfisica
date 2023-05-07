@@ -9,6 +9,9 @@ export const styles = {
       backgroundColor: theme.colors.gray[900],
       borderTopWidth: 0.5,
     },
+    tabBarLabelStyle: {
+      fontSize: 12
+    },
     headerStyle: {
       backgroundColor: theme.colors.gray[900],
       borderBottomColor: theme.colors.gray[600],
@@ -22,9 +25,6 @@ export const styles = {
     tabBarActiveTintColor: theme.colors.amber[400],
     tabBarItemStyle: {
       margin: 6,
-    },
-    tabBarLabelStyle: {
-      fontSize: 15,
     },
   }
 }

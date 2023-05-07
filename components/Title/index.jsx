@@ -3,7 +3,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./styles";
 
 
-export function Title({ icon, text}) {
+export function Title({ icon, text }) {
   return (
     <Box {...styles.title}>
       <Icon name={icon} {...styles.titleIcon} />

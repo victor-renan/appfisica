@@ -4,7 +4,7 @@ import { theme } from "native-base";
 export const styles = {
   card: {
     flex: 1,
-    width: Dimensions.get('window').width - 28,
+    width: Dimensions.get('window').width - 32,
     height: 220,
     borderRadius: 12,
     flexDirection: "row",

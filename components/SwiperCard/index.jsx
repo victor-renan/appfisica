@@ -1,17 +1,24 @@
-import raio from '../../assets/raio.jpg';
-import { Box, Image, Heading, Text } from "native-base";
+import raio from '../../assets/images/raio.jpg';
+import prisma from '../../assets/images/prisma.jpg';
+import forja from '../../assets/images/forja.jpg';
+import { Box, Image, Heading, Text, Link } from "native-base";
 import { styles } from './styles';
 
+export const imagens = {
+  raio,
+  prisma,
+  forja
+}
 
-export function SwiperCard() {
+export function SwiperCard({ image, title, text }) {
   return (
-    <Box {...styles.card}>
-      <Image source={raio} alt="Imagem" {...styles.cardImage} />
+    <Link {...styles.card}>
+      <Image source={image} alt="Imagem" {...styles.cardImage} />
       <Box {...styles.cardText}>
-        <Heading color="white">Eletrostática</Heading>
-        <Text color="white">Lorem ipsum dolor sit amet consectetur.</Text>
+        <Heading color="white">{title}</Heading>
+        <Text color="white">{text}</Text>
       </Box>
-    </Box>
+    </Link>
   );
 }
 

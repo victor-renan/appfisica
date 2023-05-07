@@ -1,7 +1,7 @@
 import { theme } from "native-base";
 
 export const styles = {
-  autoplay: true,
+  autoplay: false,
   autoplayDelay: 5,
   autoplayLoop: true,
   showPagination: true,

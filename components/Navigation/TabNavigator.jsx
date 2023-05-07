@@ -6,6 +6,7 @@ import { AtividadesRoute, AtividadesScreen } from '../../screens/Atividades';
 import { VideosRoute, VideosScreen } from '../../screens/Videos';
 import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from './styles/TabNavigator';
+import { JogosRoute, JogosScreen } from "../../screens/Jogos";
 
 
 export const NavigationTabsRoute = "Principal";
@@ -33,7 +34,7 @@ export function NavigationTabs({ navigation }) {
         name={AtividadesRoute}
         component={AtividadesScreen}
         options={{
-          tabBarIcon: ({ color }) => { return <Icon name='play-outline' size={26} color={color} /> },
+          tabBarIcon: ({ color }) => { return <Icon name='document-outline' size={26} color={color} /> },
         }}
       />
       <Tab.Screen
@@ -41,6 +42,13 @@ export function NavigationTabs({ navigation }) {
         component={VideosScreen}
         options={{
           tabBarIcon: ({ color }) => { return <Icon name='film-outline' size={26} color={color} /> },
+        }}
+      />
+      <Tab.Screen
+        name={JogosRoute}
+        component={JogosScreen}
+        options={{
+          tabBarIcon: ({ color }) => { return <Icon name='play-outline' size={26} color={color} /> },
         }}
       />
     </Tab.Navigator>

@@ -15,20 +15,19 @@ export const styles = {
   },
   documentIcon: {
     color: "white",
-    size: 20,
+    size: 24,
   },
   documentName: {
-    marginLeft: 5,
+    fontSize: 14,
+    marginLeft: 2,
     marginRight: "auto",
     color: "white"
   },
-  documentType: {
-    color: "white",
-    marginLeft: 2  
-  },
   documentButton: {
-    size: 8,
-    bg: "amber.500",
-    _pressed: { bg: "amber.700" },
+    size: 9,
+    bg: "gray.600",
+    borderWidth: 1,
+    borderColor: "gray.500",
+    _pressed: { bg: "gray.700" },
   },
 }

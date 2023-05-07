@@ -12,11 +12,11 @@ export function LoginScreen() {
       <Icon name="key-outline" {...sharedStyles.formIcon} />
       <Heading {...sharedStyles.formHeading}>Acesso Restrito</Heading>
       <VStack {...sharedStyles.form}>
-        <FormControl {...sharedStyles.formControl}>
+        <FormControl isRequired {...sharedStyles.formControl}>
           <FormControl.Label {...sharedStyles.formLabel}>Username:</FormControl.Label>
           <Input {...sharedStyles.formInput} type="text" placeholder="Digite seu username" />
         </FormControl>
-        <FormControl {...sharedStyles.formControl}>
+        <FormControl isRequired {...sharedStyles.formControl}>
           <FormControl.Label>Senha:</FormControl.Label>
           <Input {...sharedStyles.formInput} type="password" placeholder="Digite sua senha" />
         </FormControl>
