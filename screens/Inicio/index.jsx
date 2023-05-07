@@ -10,7 +10,7 @@ import { sharedStyles } from '../../shared/styles'
 import { Materia } from '../../components/Materia';
 import { instance } from "../../shared/api";
 import { searchByMateria } from '../../shared/utils';
-import { RefreshControl } from 'react-native-gesture-handler';
+import { RefreshControl } from 'react-native';
 
 // Route
 export const InicioRoute = 'Início';

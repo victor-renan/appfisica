@@ -5,7 +5,7 @@ import { sharedStyles } from "../../shared/styles";
 import { ActivityIndicator } from "react-native";
 import { instance } from "../../shared/api";
 import { searchByMateria } from "../../shared/utils";
-import { RefreshControl } from "react-native-gesture-handler";
+import { RefreshControl } from "react-native";
 
 // Rota para a tela "Material"
 export const MaterialRoute = 'Material';

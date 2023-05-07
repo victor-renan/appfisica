@@ -2,7 +2,7 @@ import React from "react";
 import { Box, ScrollView } from "native-base";
 import { Video } from "../../components/Video";
 import { sharedStyles } from "../../shared/styles";
-import { RefreshControl } from "react-native-gesture-handler";
+import { RefreshControl } from "react-native";
 import { styles } from "./styles";
 
 export const VideosRoute = 'Videos';

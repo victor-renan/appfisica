@@ -6,6 +6,7 @@ import { sharedStyles } from "../../shared/styles";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import { instance } from "../../shared/api";
+import { RefreshControl } from "react-native";
 
 export const AdminRoute = "Admin"
 
@@ -36,45 +37,55 @@ export function AdminScreen() {
 
   const [materiais, setMateriais] = React.useState([]);
   const [loadedMateriais, setLoadedMateriais] = React.useState(false);
-  
+
   const [atividades, setAtividades] = React.useState([]);
   const [loadedAtividades, setLoadedAtividades] = React.useState(false);
 
+  const loadMaterias = async () => {
+    try {
+      const response = await instance.get("materias/find")
+      console.log(response.data)
+      setMaterias(response.data);
+      setLoadedMaterias(true);
 
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const loadMateriais = async () => {
+    try {
+      const response = await instance.get("materiais/find")
+      console.log(response.data)
+      setMateriais(response.data);
+      setLoadedMateriais(true);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const loadAtividades = async () => {
+    try {
+      const response = await instance.get("atividades/find")
+      console.log(response.data)
+      setAtividades(response.data);
+      setLoadedAtividades(true);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    loadMateriais();
+    loadMaterias();
+    loadAtividades();
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   React.useEffect(() => {
-    const loadMaterias = async () => {
-      try {
-        const response = await instance.get("materias/find")
-        console.log(response.data)
-        setMaterias(response.data);
-        setLoadedMaterias(true);
-
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    const loadMateriais = async () => {
-      try {
-        const response = await instance.get("materiais/find")
-        console.log(response.data)
-        setMateriais(response.data);
-        setLoadedMateriais(true);
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    const loadAtividades = async () => {
-      try {
-        const response = await instance.get("atividades/find")
-        console.log(response.data)
-        setAtividades(response.data);
-        setLoadedAtividades(true);
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
     loadMaterias();
     loadMateriais();
     loadAtividades();
@@ -82,7 +93,9 @@ export function AdminScreen() {
 
 
   return (
-    <ScrollView>
+    <ScrollView {...sharedStyles.container}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    >
       <Center {...sharedStyles.container} justifyContent={"flex-start"} paddingTop={6}>
         <Title icon="hammer-outline" text="Painel" />
         <VStack {...sharedStyles.form}>
@@ -148,7 +161,11 @@ export function AdminScreen() {
               <Input onChangeText={value => setMaterial(value)}  {...sharedStyles.formInput} type="text" placeholder="Novo Material" />
             </FormControl>
             <Select onChange={value => setMaterial(value)} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
-              <Select.Item label="ASDF" />
+              {materias
+                ? materias.map((item) => {
+                  <Select.Item label={item.name} value={item.name} />
+                })
+                : null}
             </Select>
             <FormControl {...sharedStyles.formControl} marginBottom={0}>
               <Button variant={"outline"} borderColor={"amber.600"} colorScheme={"amber"}>Selecionar Arquivo</Button>
