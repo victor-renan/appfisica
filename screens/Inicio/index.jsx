@@ -17,46 +17,50 @@ export const InicioRoute = 'Início';
 
 // Component
 export function InicioScreen({ navigation }) {
+  const [materias, setMaterias] = React.useState([]);
+  const [loadedMaterias, setLoadedMaterias] = React.useState(false);
+  const [materiais, setMateriais] = React.useState([]);
+
+  const loadMaterias = async () => {
+    try {
+      const response = await instance.get("materias/find")
+      console.log(response.data)
+      setMaterias(response.data);
+      setLoadedMaterias(true);
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const loadMateriais = async () => {
+    try {
+      const response = await instance.get("materiais/find")
+      console.log(response.data)
+      setMateriais(response.data);
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const [refreshing, setRefreshing] = React.useState(false);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
+
+    loadMateriais();
+    loadMaterias();
+
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
   }, []);
-  const [materias, setMaterias] = React.useState([]);
-  const [loadedMaterias, setLoadedMaterias] = React.useState(false);
-
-  const [materiais, setMateriais] = React.useState([]);
-  
 
   React.useEffect(() => {
-    const loadMaterias = async () => {
-      try {
-        const response = await instance.get("materias/find")
-        console.log(response.data)
-        setMaterias(response.data);
-        setLoadedMaterias(true);
-
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    const loadMateriais = async () => {
-      try {
-        const response = await instance.get("materiais/find")
-        console.log(response.data)
-        setMateriais(response.data);
-
-      } catch (err) {
-        console.log(err)
-      }
-    }
     loadMateriais();
     loadMaterias();
   }, [])
-
 
   return (
     <ScrollView {...sharedStyles.container}

@@ -25,9 +25,11 @@ export const styles = {
   },
   documentButton: {
     size: 9,
+    borderRadius: 4,
+    justifyContent: "center",
+    alignItems: "center",
     bg: "gray.600",
     borderWidth: 1,
     borderColor: "gray.500",
-    _pressed: { bg: "gray.700" },
   },
 }
