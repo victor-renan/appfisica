@@ -57,7 +57,7 @@ export function AtividadesScreen() {
     <ScrollView {...sharedStyles.container}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
-      {loadedMaterias ? null : (<ActivityIndicator size="large" />)}
+      {loadedMaterias ? null : (<ActivityIndicator color="orange" size="large" />)}
       <Box>
         {materias.length > 0
           ? materias.map((item) => (

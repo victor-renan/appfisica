@@ -92,7 +92,7 @@ export function InicioScreen({ navigation }) {
       <Box id='material' {...sharedStyles.section}>
         <Title text="Material de Apoio" icon="book-outline" />
         <Text color='gray.400' fontSize={17} marginBottom={4}>Veja abaixo alguns dos conteúdos de Física mais importantes.</Text>
-        {loadedMaterias ? null : (<ActivityIndicator size="large" />)}
+        {loadedMaterias ? null : (<ActivityIndicator color="orange" size="large" />)}
         <Box>
           {materias.length > 0
             ? materias.slice(0, 3).map((item) => (

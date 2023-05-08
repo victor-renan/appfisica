@@ -11,6 +11,7 @@ import { RefreshControl } from "react-native";
 export const AdminRoute = "Admin"
 
 export function AdminScreen() {
+  // Form das categorias
   const [categoria, setCategoria] = React.useState('');
   const [categoriaDesc, setCategoriaDesc] = React.useState('');
   const handleCategoria = (event) => {
@@ -18,19 +19,40 @@ export function AdminScreen() {
     event.preventDefault();
   }
 
+  // Form dos materiais
   const [material, setMaterial] = React.useState('');
   const [materialCateg, setmaterialCateg] = React.useState('');
+  const [materialFile, setmaterialFile] = React.useState('');
   const handleMaterial = (event) => {
-    console.log("Material", { name: material, categoria: materialCateg });
+    console.log("Material", { name: material, categoria: materialCateg, file: materialFile });
     event.preventDefault();
   }
 
+  // Form das atividades
   const [atividade, setAtividade] = React.useState('');
   const [atividadeCateg, setAtividadeCateg] = React.useState('');
+  const [atividadeFile, setAtividadeFile] = React.useState('');
   const handleAtividade = (event) => {
-    console.log("Atividade", { name: atividade, categoria: atividadeCateg });
+    console.log("Atividade", { name: atividade, categoria: atividadeCateg, file: atividadeFile });
     event.preventDefault();
   }
+
+  // Form dos videos
+  const [video, setVideo] = React.useState('');
+  const [videoCateg, setVideoCateg] = React.useState('');
+  const handleVideo = (event) => {
+    console.log("Video", { name: video, categoria: videoCateg });
+    event.preventDefault();
+  }
+
+  // Form dos jogos
+  const [jogo, setJogo] = React.useState('');
+  const [jogoCateg, setJogoCateg] = React.useState('');
+  const handleJogo = (event) => {
+    console.log("Jogo", { name: jogo, categoria: jogoCateg });
+    event.preventDefault();
+  }
+
 
   const [materias, setMaterias] = React.useState([]);
   const [loadedMaterias, setLoadedMaterias] = React.useState(false);
@@ -40,6 +62,12 @@ export function AdminScreen() {
 
   const [atividades, setAtividades] = React.useState([]);
   const [loadedAtividades, setLoadedAtividades] = React.useState(false);
+
+  const [videos, setVideos] = React.useState([]);
+  const [loadedVideos, setLoadedVideos] = React.useState(false);
+
+  const [jogos, setJogos] = React.useState([]);
+  const [loadedJogos, setLoadedJogos] = React.useState(false);
 
   const loadMaterias = async () => {
     try {
@@ -62,6 +90,26 @@ export function AdminScreen() {
       console.log(err)
     }
   }
+  const loadVideos = async () => {
+    try {
+      const response = await instance.get("videos/find")
+      console.log(response.data)
+      setVideos(response.data);
+      setLoadedVideos(true);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const loadJogos = async () => {
+    try {
+      const response = await instance.get("jogos/find")
+      console.log(response.data)
+      setJogos(response.data);
+      setLoadedJogos(true);
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const loadAtividades = async () => {
     try {
       const response = await instance.get("atividades/find")
@@ -80,6 +128,8 @@ export function AdminScreen() {
     loadMateriais();
     loadMaterias();
     loadAtividades();
+    loadVideos()
+    loadJogos()
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -96,11 +146,11 @@ export function AdminScreen() {
     <ScrollView {...sharedStyles.container}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     >
-      <Center {...sharedStyles.container} justifyContent={"flex-start"} paddingTop={6}>
+      <Center justifyContent={"flex-start"} paddingTop={6}>
         <Title icon="hammer-outline" text="Painel" />
         <VStack {...sharedStyles.form}>
           <Text {...styles.text}>Matérias (Categorias)</Text>
-          {loadedMaterias ? null : (<ActivityIndicator size="large" />)}
+          {loadedMaterias ? null : (<ActivityIndicator color="orange" size="large" />)}
           {materias.length > 0
             ? materias.map((item) => (
               <Box {...styles.card} key={item._id}>
@@ -134,7 +184,7 @@ export function AdminScreen() {
 
         <VStack {...sharedStyles.form}>
           <Text {...styles.text}>Materiais de estudo</Text>
-          {loadedMateriais ? null : (<ActivityIndicator size="large" />)}
+          {loadedMateriais ? null : (<ActivityIndicator color="orange" size="large" />)}
           {materiais.length > 0
             ? materiais.map((item) => (
               <Box {...styles.card} key={item._id}>
@@ -162,9 +212,9 @@ export function AdminScreen() {
             </FormControl>
             <Select onChange={value => setMaterial(value)} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
               {materias
-                ? materias.map((item) => {
+                ? materias.map((item) => (
                   <Select.Item label={item.name} value={item.name} />
-                })
+                ))
                 : null}
             </Select>
             <FormControl {...sharedStyles.formControl} marginBottom={0}>
@@ -176,7 +226,7 @@ export function AdminScreen() {
 
         <VStack {...sharedStyles.form}>
           <Text {...styles.text}>Atividades</Text>
-          {loadedAtividades ? null : (<ActivityIndicator size="large" />)}
+          {loadedAtividades ? null : (<ActivityIndicator color="orange" size="large" />)}
           {atividades.length > 0
             ? atividades.map((item) => (
               <Box {...styles.card} key={item._id}>
@@ -202,8 +252,12 @@ export function AdminScreen() {
             <FormControl {...sharedStyles.formControl}>
               <Input onChange={() => { }} {...sharedStyles.formInput} type="text" placeholder="Nova Atividade" />
             </FormControl>
-            <Select onChange={() => { }} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
-              <Select.Item label="ASDF" />
+            <Select onChange={value => setAtividade(value)} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
+              {materias
+                ? materias.map((item) => (
+                  <Select.Item label={item.name} value={item.name} />
+                ))
+                : null}
             </Select>
             <FormControl {...sharedStyles.formControl} marginBottom={0}>
               <Button variant={"outline"} borderColor={"amber.600"} colorScheme={"amber"}>Selecionar Arquivo</Button>
