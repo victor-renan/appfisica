@@ -5,7 +5,7 @@ export const styles = {
   card: {
     flex: 1,
     width: Dimensions.get('window').width - 32,
-    height: 220,
+    height: Dimensions.get('window').width - 120,
     borderRadius: 12,
     flexDirection: "row",
     alignItems: "center",
