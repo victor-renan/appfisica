@@ -11,7 +11,7 @@ import { instance } from "../../shared/api";
 export const JogosRoute = "Jogos";
 
 export function JogosScreen() {
-  const [open, setOpen] = React.useState({ open: false, link: "" });
+  const [open, setOpen] = React.useState({ open: false, link: '' });
   const [refreshing, setRefreshing] = React.useState(false);
 
   const [jogos, setJogos] = React.useState([]);
@@ -40,25 +40,28 @@ export function JogosScreen() {
 
   return (
     <React.Fragment>
-      <ScrollView {...sharedStyles.container} display={open ? "none" : "flex"}>
+      <ScrollView {...sharedStyles.container} display={open.open ? "none" : "flex"}>
         {jogos ? (
           jogos.length > 0 ? (
             jogos.map((jogo) => (
-              <Jogo
-                name={jogo.name}
-                onPress={() => {
-                  setOpen({open: true, link: jogo.link});
-                }}
-              />
+              <Box mb={2}>
+                <Jogo
+                  name={jogo.name}
+                  onPress={() => {
+                    setOpen({ open: true, link: jogo.link });
+                    console.log(jogo.link)
+                  }}
+                />
+              </Box>
             ))
           ) : null
         ) : (
           <Text>Não há jogos para mostrar!</Text>
         )}
       </ScrollView>
-      {open ? (
+      {open.open ? (
         <React.Fragment>
-          <Button {...styles.button} onPress={() => setOpen(false)}>
+          <Button {...styles.button} onPress={() => setOpen({ open: false, link: '' })}>
             <HStack>
               <Icon name="arrow-back-outline" size={20} color={"white"} />
               <Text ml={1} color={"white"}>
@@ -73,7 +76,7 @@ export function JogosScreen() {
               flex: 1,
             }}
             source={{
-              uri: jogo.link,
+              uri: open.link,
             }}
           />
         </React.Fragment>

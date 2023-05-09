@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://madesco.serveo.net/",
+  baseURL: "https://c91f-200-24-80-15.ngrok-free.app/",
   timeout: 2000,
 })
