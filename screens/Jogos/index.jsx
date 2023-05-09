@@ -44,7 +44,7 @@ export function JogosScreen() {
         {jogos ? (
           jogos.length > 0 ? (
             jogos.map((jogo) => (
-              <Box mb={2}>
+              <Box key={jogo._id} mb={2}>
                 <Jogo
                   name={jogo.name}
                   onPress={() => {

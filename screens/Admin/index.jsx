@@ -1,6 +1,6 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
-import { ScrollView, Center, FlatList, FormControl, HStack, Text, VStack, Box, Button, Input, TextArea, Select } from "native-base";
+import { ScrollView, Center, FlatList, FormControl, HStack, Text, VStack, Box, Button, Input, TextArea, Select, useToast } from "native-base";
 import { Title } from "../../components/Title";
 import { sharedStyles } from "../../shared/styles";
 import { styles } from "./styles";
@@ -11,12 +11,55 @@ import { RefreshControl } from "react-native";
 export const AdminRoute = "Admin"
 
 export function AdminScreen() {
-  // Form das categorias
-  const [categoria, setCategoria] = React.useState('');
-  const [categoriaDesc, setCategoriaDesc] = React.useState('');
-  const handleCategoria = (event) => {
-    console.log("Categoria", { name: categoria, description: categoriaDesc });
+  const toast = useToast();
+  // Form das materias
+  const [materia, setMateria] = React.useState('');
+  const [materiaDesc, setMateriaDesc] = React.useState('');
+  const createMateria = async () => {
+    try {
+      const response = await instance.post("materias/create", {
+        name: materia,
+        description: materiaDesc,
+      })
+      loadMaterias();
+      console.log(response.data)
+    } catch (err) {
+      toast.show({
+        description: err.response.data.message
+      })
+      console.log(err.response.data.message)
+    }
+  }
+  const updateMateria = async (id, ...values) => {
+    try {
+      const response = await instance.post(`materias/update/${id}`, {
+        ...values
+      })
+      loadMaterias();
+      console.log(response.data)
+    } catch (err) {
+      toast.show({
+        description: err.response.data.message
+      })
+      console.log(err.response.data.message)
+    }
+  }
+  const deleteMateria = async (id) => {
+    try {
+      const response = await instance.post(`materias/delete/${id}`)
+      loadMaterias();
+      console.log(response.data)
+    } catch (err) {
+      toast.show({
+        description: err.response.data.message
+      })
+      console.log(err.response.data.message)
+    }
+  }
+  const handleMateria = (event) => {
+    console.log("Materia", { name: materia, description: materiaDesc });
     event.preventDefault();
+    createMateria();
   }
 
   // Form dos materiais
@@ -24,7 +67,7 @@ export function AdminScreen() {
   const [materialCateg, setmaterialCateg] = React.useState('');
   const [materialFile, setmaterialFile] = React.useState('');
   const handleMaterial = (event) => {
-    console.log("Material", { name: material, categoria: materialCateg, file: materialFile });
+    console.log("Material", { name: material, materia: materialCateg, file: materialFile });
     event.preventDefault();
   }
 
@@ -33,7 +76,7 @@ export function AdminScreen() {
   const [atividadeCateg, setAtividadeCateg] = React.useState('');
   const [atividadeFile, setAtividadeFile] = React.useState('');
   const handleAtividade = (event) => {
-    console.log("Atividade", { name: atividade, categoria: atividadeCateg, file: atividadeFile });
+    console.log("Atividade", { name: atividade, materia: atividadeCateg, file: atividadeFile });
     event.preventDefault();
   }
 
@@ -41,15 +84,16 @@ export function AdminScreen() {
   const [video, setVideo] = React.useState('');
   const [videoCateg, setVideoCateg] = React.useState('');
   const handleVideo = (event) => {
-    console.log("Video", { name: video, categoria: videoCateg });
+    console.log("Video", { name: video, materia: videoCateg });
     event.preventDefault();
   }
 
   // Form dos jogos
   const [jogo, setJogo] = React.useState('');
   const [jogoCateg, setJogoCateg] = React.useState('');
+  const [jogoLink, setJogoLink] = React.useState('');
   const handleJogo = (event) => {
-    console.log("Jogo", { name: jogo, categoria: jogoCateg });
+    console.log("Jogo", { name: jogo, materia: jogoCateg, link: jogoLink });
     event.preventDefault();
   }
 
@@ -149,7 +193,7 @@ export function AdminScreen() {
       <Center justifyContent={"flex-start"} paddingTop={6}>
         <Title icon="hammer-outline" text="Painel" />
         <VStack {...sharedStyles.form}>
-          <Text {...styles.text}>Matérias (Categorias)</Text>
+          <Text {...styles.text}>Matérias (Materias)</Text>
           {loadedMaterias ? null : (<ActivityIndicator color="orange" size="large" />)}
           {materias.length > 0
             ? materias.map((item) => (
@@ -162,7 +206,7 @@ export function AdminScreen() {
                         <Icon name="pencil-outline" color="white" size={18} />
                       </Button>
                       <Button {...styles.button}>
-                        <Icon name="trash-outline" color="white" size={18} />
+                        <Icon onPress={() => deleteMateria(item._id)} name="trash-outline" color="white" size={18} />
                       </Button>
                     </HStack>
                   </HStack>
@@ -173,17 +217,17 @@ export function AdminScreen() {
             : (<Text color={"amber.300"}>Não há matérias!</Text>)}
           <VStack marginTop={2}>
             <FormControl {...sharedStyles.formControl}>
-              <Input onChangeText={value => setCategoria(value)} {...sharedStyles.formInput} type="text" placeholder="Nova Materia" />
+              <Input onChangeText={value => setMateria(value)} {...sharedStyles.formInput} type="text" placeholder="Nova Materia" />
             </FormControl>
             <FormControl {...sharedStyles.formControl} marginBottom={0}>
-              <TextArea onChangeText={value => setCategoriaDesc(value)} placeholder="Descrição" {...sharedStyles.formInput} />
+              <TextArea onChangeText={value => setMateriaDesc(value)} placeholder="Descrição" {...sharedStyles.formInput} />
             </FormControl>
-            <Button onPress={(e) => handleCategoria(e)} {...sharedStyles.formButton}>Criar</Button>
+            <Button onPress={(e) => handleMateria(e)} {...sharedStyles.formButton}>Criar</Button>
           </VStack>
         </VStack>
 
         <VStack {...sharedStyles.form}>
-          <Text {...styles.text}>Materiais de estudo</Text>
+          <Text {...styles.text}>Materiais (Drive)</Text>
           {loadedMateriais ? null : (<ActivityIndicator color="orange" size="large" />)}
           {materiais.length > 0
             ? materiais.map((item) => (
@@ -210,23 +254,24 @@ export function AdminScreen() {
             <FormControl {...sharedStyles.formControl}>
               <Input onChangeText={value => setMaterial(value)}  {...sharedStyles.formInput} type="text" placeholder="Novo Material" />
             </FormControl>
-            <Select onChange={value => setMaterial(value)} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
+            <Select onChange={value => setMaterial(value)} marginBottom={2} placeholder="Materia" {...sharedStyles.formInput}>
               {materias
                 ? materias.map((item) => (
                   <Select.Item label={item.name} value={item.name} />
                 ))
                 : null}
             </Select>
-            <FormControl {...sharedStyles.formControl} marginBottom={0}>
-              <Button variant={"outline"} borderColor={"amber.600"} colorScheme={"amber"}>Selecionar Arquivo</Button>
+            <FormControl {...sharedStyles.formControl}>
+              <Input onChangeText={value => setmaterialFile(value)}  {...sharedStyles.formInput} type="text" placeholder="Link do Arquivo (Drive)" />
             </FormControl>
             <Button {...sharedStyles.formButton}>Criar</Button>
           </VStack>
         </VStack>
 
         <VStack {...sharedStyles.form}>
-          <Text {...styles.text}>Atividades</Text>
+          <Text {...styles.text}>Atividades (Drive)</Text>
           {loadedAtividades ? null : (<ActivityIndicator color="orange" size="large" />)}
+          {loadedVideos ? null : (<ActivityIndicator color="orange" size="large" />)}
           {atividades.length > 0
             ? atividades.map((item) => (
               <Box {...styles.card} key={item._id}>
@@ -252,15 +297,94 @@ export function AdminScreen() {
             <FormControl {...sharedStyles.formControl}>
               <Input onChange={() => { }} {...sharedStyles.formInput} type="text" placeholder="Nova Atividade" />
             </FormControl>
-            <Select onChange={value => setAtividade(value)} marginBottom={2} placeholder="Categoria" {...sharedStyles.formInput}>
+            <Select onChange={value => setAtividade(value)} marginBottom={2} placeholder="Materia" {...sharedStyles.formInput}>
               {materias
                 ? materias.map((item) => (
                   <Select.Item label={item.name} value={item.name} />
                 ))
                 : null}
             </Select>
-            <FormControl {...sharedStyles.formControl} marginBottom={0}>
-              <Button variant={"outline"} borderColor={"amber.600"} colorScheme={"amber"}>Selecionar Arquivo</Button>
+            <FormControl {...sharedStyles.formControl}>
+              <Input onChangeText={value => setmaterialFile(value)}  {...sharedStyles.formInput} type="text" placeholder="Link do Arquivo (Drive)" />
+            </FormControl>
+            <Button {...sharedStyles.formButton}>Criar</Button>
+          </VStack>
+        </VStack>
+
+        <VStack {...sharedStyles.form}>
+          <Text {...styles.text}>Vídeos (Youtube)</Text>
+          {loadedAtividades ? null : (<ActivityIndicator color="orange" size="large" />)}
+          {videos.length > 0
+            ? videos.map((item) => (
+              <Box {...styles.card} key={item._id}>
+                <VStack>
+                  <HStack >
+                    <Text bold {...styles.cardTitle}>{item.videoId}</Text>
+                    <HStack {...styles.actions}>
+                      <Button {...styles.button}>
+                        <Icon name="pencil-outline" color="white" size={18} />
+                      </Button>
+                      <Button {...styles.button}>
+                        <Icon name="trash-outline" color="white" size={18} />
+                      </Button>
+                    </HStack>
+                  </HStack>
+                  <Text italic color={"amber.400"}>{item.materia}</Text>
+                </VStack>
+              </Box>
+            ))
+            : (<Text color={"amber.300"}>Não há vídeos!</Text>)}
+          <VStack marginTop={2}>
+            <Select onChange={value => setAtividade(value)} marginBottom={2} placeholder="Materia" {...sharedStyles.formInput}>
+              {materias
+                ? materias.map((item) => (
+                  <Select.Item label={item.name} value={item.name} />
+                ))
+                : null}
+            </Select>
+            <FormControl {...sharedStyles.formControl}>
+              <Input onChangeText={value => setmaterialFile(value)}  {...sharedStyles.formInput} type="text" placeholder="Id do video (Youtube)" />
+            </FormControl>
+            <Button {...sharedStyles.formButton}>Criar</Button>
+          </VStack>
+        </VStack>
+
+        <VStack {...sharedStyles.form}>
+          <Text {...styles.text}>Jogos (PHET)</Text>
+          {loadedJogos ? null : (<ActivityIndicator color="orange" size="large" />)}
+          {jogos.length > 0
+            ? jogos.map((item) => (
+              <Box {...styles.card} key={item._id}>
+                <VStack>
+                  <HStack marginBottom={1}>
+                    <Text bold {...styles.cardTitle}>{item.name}</Text>
+                    <HStack {...styles.actions}>
+                      <Button {...styles.button}>
+                        <Icon name="pencil-outline" color="white" size={18} />
+                      </Button>
+                      <Button {...styles.button}>
+                        <Icon name="trash-outline" color="white" size={18} />
+                      </Button>
+                    </HStack>
+                  </HStack>
+                  <Text italic color={"amber.400"}>{item.materia}</Text>
+                </VStack>
+              </Box>
+            ))
+            : (<Text color={"amber.300"}>Não há jogos!</Text>)}
+          <VStack marginTop={2}>
+            <FormControl {...sharedStyles.formControl}>
+              <Input onChange={value => setVideo(value)} {...sharedStyles.formInput} type="text" placeholder="Novo jogo" />
+            </FormControl>
+            <Select onChange={value => setVideoCateg(value)} marginBottom={2} placeholder="Materia" {...sharedStyles.formInput}>
+              {materias
+                ? materias.map((item) => (
+                  <Select.Item label={item.name} value={item.name} />
+                ))
+                : null}
+            </Select>
+            <FormControl {...sharedStyles.formControl}>
+              <Input onChangeText={value => setJogoLink(value)}  {...sharedStyles.formInput} type="text" placeholder="Link do jogo (Site da PHET)" />
             </FormControl>
             <Button {...sharedStyles.formButton}>Criar</Button>
           </VStack>
