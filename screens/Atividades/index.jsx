@@ -18,7 +18,7 @@ export function AtividadesScreen() {
   const loadMaterias = async () => {
     try {
       const response = await instance.get("materias/find")
-      console.log(response.data)
+      
       setMaterias(response.data);
       setLoadedMaterias(true);
 
@@ -29,7 +29,7 @@ export function AtividadesScreen() {
   const loadAtividades = async () => {
     try {
       const response = await instance.get("atividades/find")
-      console.log(response.data)
+      
       setAtividades(response.data);
 
     } catch (err) {

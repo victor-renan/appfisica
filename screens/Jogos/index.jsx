@@ -19,7 +19,7 @@ export function JogosScreen() {
   const loadJogos = async () => {
     try {
       const response = await instance.get("jogos/find");
-      console.log(response.data);
+      
       setJogos(response.data);
       setLoadedJogos(true);
     } catch (err) {

@@ -20,7 +20,7 @@ export function VideosScreen() {
   const loadMaterias = async () => {
     try {
       const response = await instance.get("materias/find")
-      console.log(response.data)
+      
       setMaterias(response.data);
       setLoadedMaterias(true);
 
@@ -32,7 +32,7 @@ export function VideosScreen() {
   const loadVideos = async () => {
     try {
       const response = await instance.get("videos/find")
-      console.log(response.data)
+      
       setVideos(response.data);
 
     } catch (err) {

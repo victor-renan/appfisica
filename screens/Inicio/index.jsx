@@ -24,7 +24,7 @@ export function InicioScreen({ navigation }) {
   const loadMaterias = async () => {
     try {
       const response = await instance.get("materias/find")
-      console.log(response.data)
+      
       setMaterias(response.data);
       setLoadedMaterias(true);
 
@@ -36,7 +36,7 @@ export function InicioScreen({ navigation }) {
   const loadMateriais = async () => {
     try {
       const response = await instance.get("materiais/find")
-      console.log(response.data)
+      
       setMateriais(response.data);
 
     } catch (err) {

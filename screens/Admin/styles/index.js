@@ -27,13 +27,13 @@ export const styles = {
     marginLeft: "auto",
   },
   button: {
-    padding: 1,
-    bg: "gray.600",
+    padding: 1.5,
+    bg: "red.600",
     borderWidth: 1,
-    borderColor: "gray.500",
+    borderColor: "red.400",
     marginLeft: 1,
     _pressed: {
-      bg:"gray.700"
+      bg:"red.700"
     }
   },
   form: {
