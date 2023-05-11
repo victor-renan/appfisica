@@ -44,7 +44,7 @@ export function NavigationDrawer({ navigation }) {
         name={AdminRoute}
         component={AdminScreen}
         options={{
-          drawerIcon: ({ color }) => { return <Icon name='key-outline' size={20} color={color} /> },
+          drawerIcon: ({ color }) => { return <Icon name='hammer-outline' size={20} color={color} /> },
         }}
       />
     </Drawer.Navigator>

@@ -4,9 +4,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from "./styles";
 import { sharedStyles } from "../../shared/styles";
 
-export const LoginRoute = "Login"
+export const LoginRoute = "Acesso Restrito"
 
 export function LoginScreen() {
+  const [username, setUsername] = React.useState('');
+  const [senha, setSenha] = React.useState('');
   return (
     <Center {...sharedStyles.container}>
       <Icon name="key-outline" {...sharedStyles.formIcon} />

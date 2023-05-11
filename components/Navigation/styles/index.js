@@ -17,7 +17,7 @@ export const styles = {
     headerRightContainerStyle: {
       paddingRight: 8,
     },
-    headerTitle: "App de Física",
+    headerTitle: "StudyHub",
     headerTintColor: theme.colors.gray[100],
     headerTitleStyle: {
       fontSize: 18
