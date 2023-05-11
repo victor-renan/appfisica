@@ -302,7 +302,6 @@ export function AdminScreen() {
     loadJogos();
   }, [])
 
-
   return (
     <ScrollView {...sharedStyles.container}
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

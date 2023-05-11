@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator();
 // --> Navegador padrão Drawer
 export function NavigationDrawer({ navigation }) {
   const userContext = React.useContext(UserContext);
-
+  console.log(userContext)
   return (
     <Drawer.Navigator
       useLegacyImplementation
@@ -36,7 +36,7 @@ export function NavigationDrawer({ navigation }) {
           drawerIcon: ({ color }) => { return <Icon name='home-outline' size={20} color={color} /> },
         }}
       />
-      
+
       <Drawer.Screen
         name={LoginRoute}
         component={LoginScreen}

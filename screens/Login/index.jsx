@@ -7,24 +7,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AdminRoute } from "../Admin";
 import { useToast } from "native-base";
 
-export const UserContext = React.createContext({
-  user: null,
-});
+export const UserContext = React.createContext(false);
 
 export const LoginRoute = "Acesso Restrito";
 
 export function LoginScreen({ navigation }) {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const {user, setUser} = React.useContext(UserContext);
   const toast = useToast();
 
   const login = async () => {
     try {
       const response = await instance.post('users/login', { username, password });
-      console.log(response.data)
+      console.log(response.data);
       if (response.data) {
         await AsyncStorage.setItem('user', JSON.stringify(response.data));
-        (<UserContext.Provider value={await AsyncStorage.getItem('user')} />)
+        await setUser(false);
         navigation.navigate(AdminRoute)
       } else {
         toast.show({
