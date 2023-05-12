@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "appfisica",
-    "slug": "appfisica",
+    "name": "StudyHub",
+    "slug": "studyhub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,7 +28,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "151a7c32-d99b-463d-8694-443bf1ae55b8"
+        "projectId": "93ca1401-456a-4f6d-810f-e4ecbc2a4aa4"
       }
     },
     "owner": "victor-renan"

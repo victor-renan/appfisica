@@ -5,7 +5,6 @@ import { Title } from "../../components/Title";
 import { sharedStyles } from "../../shared/styles";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import { LoginScreen } from "../Login"
 import { instance } from "../../shared/api";
 import { RefreshControl } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
