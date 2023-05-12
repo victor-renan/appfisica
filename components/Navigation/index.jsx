@@ -4,7 +4,6 @@ import { styles } from './styles';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationTabs, NavigationTabsRoute } from "./TabNavigator";
 import { theme } from "native-base";
-import { LoginRoute, LoginScreen, UserContext } from "../../screens/Login";
 import { AdminRoute, AdminScreen } from "../../screens/Admin";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -14,8 +13,14 @@ const Drawer = createDrawerNavigator();
 
 // --> Navegador padrão Drawer
 export function NavigationDrawer({ navigation }) {
-  const userContext = React.useContext(UserContext);
-  console.log(userContext)
+  const [user, setUser] = React.useState(null);
+  const getUser = async () => {
+    setUser(await AsyncStorage.getItem('user'));
+  }
+  React.useEffect(() => {
+    getUser()
+    console.log(user);
+  },[]);
   return (
     <Drawer.Navigator
       useLegacyImplementation
@@ -36,24 +41,10 @@ export function NavigationDrawer({ navigation }) {
           drawerIcon: ({ color }) => { return <Icon name='home-outline' size={20} color={color} /> },
         }}
       />
-
-      <Drawer.Screen
-        name={LoginRoute}
-        component={LoginScreen}
-        options={{
-          drawerItemStyle: {
-            display: userContext ? "none" : "flex",
-          },
-          drawerIcon: ({ color }) => { return <Icon name='key-outline' size={20} color={color} /> },
-        }}
-      />
       <Drawer.Screen
         name={AdminRoute}
         component={AdminScreen}
         options={{
-          drawerItemStyle: {
-            display: userContext ? "flex" : "none",
-          },
           drawerIcon: ({ color }) => { return <Icon name='hammer-outline' size={20} color={color} /> },
         }}
       />
