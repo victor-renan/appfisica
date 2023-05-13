@@ -11,7 +11,7 @@ export const styles = {
     headerStyle: {
       backgroundColor: theme.colors.gray[900],
       borderBottomColor: theme.colors.gray[600],
-      height: 64,
+      height: 68,
       borderBottomWidth: 0.5,
     },
     headerRightContainerStyle: {
@@ -20,7 +20,7 @@ export const styles = {
     headerTitle: "StudyHub",
     headerTintColor: theme.colors.gray[100],
     headerTitleStyle: {
-      fontSize: 18
+      fontSize: 18,
     },
     drawerStyle: {
       backgroundColor: theme.colors.gray[900]

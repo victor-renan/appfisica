@@ -3,7 +3,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { styles } from './styles';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationTabs, NavigationTabsRoute } from "./TabNavigator";
-import { theme } from "native-base";
+import { theme, Text, Heading } from "native-base";
 import { AdminRoute, AdminScreen } from "../../screens/Admin";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
